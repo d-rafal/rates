@@ -5,6 +5,10 @@ import { AccordionSummary, AccordionSummaryProps } from "@mui/material";
 export const AppAccordionSummary = styled((props: AccordionSummaryProps) => (
   <AccordionSummary
     expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+    sx={{
+      "& .MuiAccordionSummary-content": { marginLeft: "0.5rem!important" },
+      // "&.Mui-expanded": { marginLeft: "0.5rem" },
+    }}
     {...props}
   />
 ))(({ theme }) => ({

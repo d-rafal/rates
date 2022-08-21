@@ -1,10 +1,11 @@
-import { ReportedExceptionCharacterType } from "../@types-and-const/@general";
+import { ReportedMessage } from "../@types-and-const/@general";
 
 export class AppException extends Error {
   constructor(
     message: string,
-    private _messageForUser: string = "Wystąpił Błąd!",
-    private _type: ReportedExceptionCharacterType = "error"
+    private _messageForUser: ReportedMessage["messageForUser"] = "Error occurred!",
+    private _type: ReportedMessage["type"] = "error",
+    private _autoHideDuration: ReportedMessage["autoHideDuration"] = 0
   ) {
     super(message);
 
@@ -18,5 +19,11 @@ export class AppException extends Error {
   }
   getType() {
     return this._type;
+  }
+  getAutoHideDuration() {
+    return this._autoHideDuration;
+  }
+  getReportedMessage() {
+    return this._autoHideDuration;
   }
 }

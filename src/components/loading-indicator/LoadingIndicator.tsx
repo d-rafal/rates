@@ -1,21 +1,30 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import {
+  CircularProgress,
+  Stack,
+  Typography,
+  StackTypeMap,
+} from "@mui/material";
+import { DefaultComponentProps } from "@mui/material/OverridableComponent";
 
-const LoadingIndicator = () => {
+interface LoadingIndicatorProps
+  extends DefaultComponentProps<StackTypeMap<{}, "div">> {}
+
+const LoadingIndicator = ({ sx, ...stackProps }: LoadingIndicatorProps) => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
+    <Stack
+      justifyContent="center"
+      alignItems="center"
+      sx={[
+        {
+          height: "100%",
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+      {...stackProps}
     >
-      <CircularProgress
-        size={120}
-        sx={{ marginTop: "5rem", marginBottom: "1rem" }}
-      />
-      <Typography>Wczytywanie...</Typography>
-    </Box>
+      <CircularProgress size={120} sx={{ marginBottom: "1rem" }} />
+      <Typography>Loading...</Typography>
+    </Stack>
   );
 };
 

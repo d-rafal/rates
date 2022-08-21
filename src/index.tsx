@@ -2,32 +2,45 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { CssBaseline } from "@mui/material";
 
-// import roboto fonts required by mui
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-import { BrowserRouter } from "react-router-dom";
-import AppThemeProvider from "./components/theme/AppThemeProvider";
+import ErrorBoundary from "./components/error-boundary/ErrorBoundary";
+import ErrorInsideAppIndicator from "./components/error-inside-app-indicator/ErrorInsideAppIndicator";
+import { store } from "./app/store/store";
+import { Provider } from "react-redux";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <CssBaseline />
-    <BrowserRouter>
-      <AppThemeProvider>
-        <App />
-      </AppThemeProvider>
-    </BrowserRouter>
-  </React.StrictMode>
-);
+import { worker } from "./mocks/worker";
+import { StartOptions } from "msw";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import "./mui/importRobotoFonts";
+import "./utilities/appHeightAdjustment";
+
+const start = async () => {
+  const serviceWorkerUrl: StartOptions["serviceWorker"] | null =
+    process.env.NODE_ENV !== "development"
+      ? { url: "/rates/mockServiceWorker.js" }
+      : null;
+
+  await worker.start({
+    serviceWorker: {
+      ...serviceWorkerUrl,
+    },
+    onUnhandledRequest: "bypass",
+  });
+
+  const root = ReactDOM.createRoot(
+    document.getElementById("root") as HTMLElement
+  );
+  root.render(
+    <React.StrictMode>
+      <ErrorBoundary renderOnError={() => <ErrorInsideAppIndicator />}>
+        <CssBaseline />
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ErrorBoundary>
+    </React.StrictMode>
+  );
+};
+
+start();
