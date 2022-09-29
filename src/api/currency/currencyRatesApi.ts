@@ -17,11 +17,19 @@ export const currencyApi_2 = {
   getActualRate: currencyRate_api,
 };
 
+interface CurrencyRateQueryProps {
+  selectedCurrency: SelectedCurrencyQueryInUrl;
+  startDate: string;
+  endDate: string;
+}
+
 const currencyRatesApi = rtkqApi.injectEndpoints({
   endpoints: (build) => ({
-    currencyRate: build.query<CurrencyRate, string>({
-      query: (query) =>
-        "http://api.nbp.pl/api/exchangerates/rates/a/" + query.toLowerCase(),
+    currencyRate: build.query<CurrencyRate, CurrencyRateQueryProps>({
+      query: ({ selectedCurrency, startDate, endDate }) =>
+        "http://api.nbp.pl/api/exchangerates/rates/a/" +
+        `${selectedCurrency}/${startDate}/${endDate}`.toLowerCase(),
+      providesTags: (result, error, arg) => [arg.selectedCurrency],
     }),
     tableA: build.query<any, void>({
       query: () => "http://api.nbp.pl/api/exchangerates/tables/a",

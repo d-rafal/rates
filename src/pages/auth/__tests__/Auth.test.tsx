@@ -12,9 +12,9 @@ describe("Auth tests", () => {
       initialRoutes: ["/login"],
     });
 
-    const emailInput = screen.getByLabelText(/^email address \*$/i);
+    const emailInput = screen.getByRole("textbox", { name: /email address/i });
     const passwordInput = screen.getByLabelText(/^password \*$/i);
-    const rememberMe = screen.getByLabelText(/^remember me$/i);
+    const rememberMe = screen.getByRole("checkbox", { name: /remember me/i });
     const signInButton = screen.getByRole("button", { name: /^sign in$/i });
 
     //act
@@ -45,9 +45,9 @@ describe("Auth tests", () => {
     const user = userEvent.setup();
     render(<Auth />);
 
-    const emailInput = screen.getByLabelText(/^email address \*$/i);
+    const emailInput = screen.getByRole("textbox", { name: /email address/i });
     const passwordInput = screen.getByLabelText(/^password \*$/i);
-    const rememberMe = screen.getByLabelText(/^remember me$/i);
+    const rememberMe = screen.getByRole("checkbox", { name: /remember me/i });
     const signInButton = screen.getByRole("button", { name: /^sign in$/i });
 
     //act

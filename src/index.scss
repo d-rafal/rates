@@ -17,3 +17,21 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #b3b3b3;
 }
+
+button,
+input,
+select,
+textarea {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+input[type="search"],
+input[type="checkbox"] {
+  appearance: none;
+}
+
+input[type="search"]:not(:focus, :active)::-webkit-search-cancel-button {
+  display: none;
+}

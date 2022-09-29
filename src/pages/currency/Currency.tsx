@@ -32,9 +32,16 @@ const Currency = () => {
     isLoading,
     isFetching,
     currentData: currencyRates,
-  } = useCurrencyRateQuery(`${selectedCurrency}/${startDate}/${endDate}`, {
-    refetchOnMountOrArgChange: true,
-  });
+  } = useCurrencyRateQuery(
+    { selectedCurrency, startDate, endDate },
+    {
+      // refetchOnMountOrArgChange: true,
+      refetchOnFocus: true,
+      refetchOnReconnect: true,
+    }
+  );
+
+  error && console.log("error: ", error);
 
   // const { data: tableA } = useTableAQuery(undefined, {
   //   refetchOnMountOrArgChange: true,

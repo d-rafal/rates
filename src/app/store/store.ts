@@ -9,6 +9,7 @@ import reportedMessagesReducer from "./features/reported-messages/reportedMessag
 
 import { api, AppApi } from "../../api";
 import { rtkqApi } from "./api";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 export interface ExtraArgument {
   api: AppApi;
@@ -23,7 +24,7 @@ const rootReducer = combineReducers({
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
-  return configureStore({
+  const store = configureStore({
     reducer: rootReducer,
     devTools: process.env.NODE_ENV !== "production",
     preloadedState: preloadedState,
@@ -34,6 +35,11 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
         },
       }).concat(rtkqApi.middleware),
   });
+
+  // enable listener behavior for the store
+  setupListeners(store.dispatch);
+
+  return store;
 };
 
 export const store = setupStore();

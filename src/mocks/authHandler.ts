@@ -11,7 +11,7 @@ export const authHandlers = [
   rest.post<{ email: string; password: string }>(
     "api/login",
     async function (req, res, ctx) {
-      const { email, password } = JSON.parse(await req.json());
+      const { email, password } = await req.json();
 
       if (email !== sampleUserCredentials.email) {
         return res(
