@@ -20,9 +20,10 @@ export const currencyRateSchema: JTDSchemaType<CurrencyRate> = {
       elements: {
         properties: {
           no: { type: "string" },
-          effectiveDate: { type: "timestamp" },
+          effectiveDate: { type: "string" },
           mid: { type: "float64" },
         },
+        additionalProperties: false,
       },
     },
   },

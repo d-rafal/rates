@@ -4,7 +4,7 @@ import { isDateValid } from "../../utilities/date/isDateValid";
 import { stringToDate } from "../../utilities/date/stringToDate";
 
 export const TIME_RANGE_QUERY_IN_URL = {
-  key: "time-range",
+  key: "time-range" as const,
   allowedValues: ["week", "month", "3months", "6months", "max"] as const,
 };
 

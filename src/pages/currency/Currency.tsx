@@ -35,7 +35,7 @@ const Currency = () => {
   } = useCurrencyRateQuery(
     { selectedCurrency, startDate, endDate },
     {
-      // refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: true,
       refetchOnFocus: true,
       refetchOnReconnect: true,
     }

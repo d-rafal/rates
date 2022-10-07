@@ -1,6 +1,10 @@
 import { SerializedError } from "@reduxjs/toolkit";
 import { useSearchParams } from "react-router-dom";
 
+export interface WithTestId {
+  testId?: string;
+}
+
 export type ReportedMessageCharacterType = "error" | "warning" | "info";
 export interface ReportedMessage {
   messageForUser: string;

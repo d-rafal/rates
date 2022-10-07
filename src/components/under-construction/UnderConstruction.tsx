@@ -1,6 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import { useState } from "react";
+import { AppException } from "../../utilities/appException";
 
 interface HideProps {
   value: number;
@@ -149,6 +150,31 @@ const UnderConstruction = () => {
         }}
       >
         Object.assign
+      </button>
+
+      <button
+        onClick={() => {
+          const testFn = (param: boolean) => {
+            try {
+              if (param) {
+                throw 1;
+              }
+            } catch (e: unknown) {
+              console.log("e", e);
+
+              return;
+            }
+
+            console.log("TEST 2");
+          };
+
+          console.log("TEST 1");
+
+          testFn(true);
+          console.log("TEST 3");
+        }}
+      >
+        test try
       </button>
     </Stack>
   );

@@ -23,7 +23,4 @@ export class AppException extends Error {
   getAutoHideDuration() {
     return this._autoHideDuration;
   }
-  getReportedMessage() {
-    return this._autoHideDuration;
-  }
 }

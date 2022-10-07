@@ -1,6 +1,7 @@
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { CURRENCY_ROUTE } from "./currencyRoute";
+import { MINES_ROUTE } from "./minesRoute";
 import { TEST_ROUTE } from "./testRoute";
 
 export interface NavRoute {
@@ -11,4 +12,4 @@ export interface NavRoute {
   };
 }
 
-export const NAV_ROUTES: NavRoute[] = [CURRENCY_ROUTE, TEST_ROUTE];
+export const NAV_ROUTES: NavRoute[] = [CURRENCY_ROUTE, TEST_ROUTE, MINES_ROUTE];

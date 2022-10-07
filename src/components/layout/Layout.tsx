@@ -41,10 +41,11 @@ function Layout({ navbar }: Readonly<LayoutProps>) {
           <Box
             component="article"
             sx={{
-              display: "flex",
-              flexDirection: "column",
+              // display: "flex",
+              // flexDirection: "column",
               maxWidth: "100%",
-              minHeight: "100%",
+              height: "100%",
+              // minHeight: "100%",
               padding: { xs: 1, lg: 2 },
             }}
           >
