@@ -5,58 +5,60 @@ type SizeQueryInUrlConfig<Union extends number> = {
   };
 };
 
-export const X_SIZE_QUERY_IN_URL = {
-  key: "x-size" as const,
-  allowedValues: [40, 50, 60] as const,
+export const ROWS_SIZE_QUERY_IN_URL = {
+  key: "rows" as const,
+  allowedValues: [8, 16] as const,
 };
 
-export type XSizeQueryInUrlKayName = typeof X_SIZE_QUERY_IN_URL["key"];
+export type RowsSizeQueryInUrlKayName = typeof ROWS_SIZE_QUERY_IN_URL["key"];
 
-export type XSizeQueryInUrlAllowedDefinedValues =
-  typeof X_SIZE_QUERY_IN_URL["allowedValues"][number];
+export type RowsSizeQueryInUrlAllowedDefinedValues =
+  typeof ROWS_SIZE_QUERY_IN_URL["allowedValues"][number];
 
-export const X_SIZE_QUERY_IN_URL_CONFIG: SizeQueryInUrlConfig<XSizeQueryInUrlAllowedDefinedValues> =
+export const ROWS_SIZE_QUERY_IN_URL_CONFIG: SizeQueryInUrlConfig<RowsSizeQueryInUrlAllowedDefinedValues> =
   {
-    "40": { queryValue: 40, uiValue: "40" },
-    "50": { queryValue: 50, uiValue: "50" },
-    "60": { queryValue: 60, uiValue: "60" },
+    "8": { queryValue: 8, uiValue: "8" },
+    "16": { queryValue: 16, uiValue: "16" },
   };
 
-export const X_SIZE_DEFAULT_VALUE: XSizeQueryInUrlAllowedDefinedValues = 50;
+export const ROWS_SIZE_DEFAULT_VALUE: RowsSizeQueryInUrlAllowedDefinedValues = 16;
 
-export const isValidXSize = (
+export const isValidRowsSize = (
   value: number | null | undefined
-): value is XSizeQueryInUrlAllowedDefinedValues => {
+): value is RowsSizeQueryInUrlAllowedDefinedValues => {
   return (
-    X_SIZE_QUERY_IN_URL.allowedValues.find((element) => element === value) !==
-    undefined
+    ROWS_SIZE_QUERY_IN_URL.allowedValues.find(
+      (element) => element === value
+    ) !== undefined
   );
 };
 
-export const Y_SIZE_QUERY_IN_URL = {
-  key: "y-size" as const,
-  allowedValues: [10, 20, 30] as const,
+export const COLUMNS_SIZE_QUERY_IN_URL = {
+  key: "columns" as const,
+  allowedValues: [8, 16, 30] as const,
 };
 
-export type YSizeQueryInUrlKayName = typeof Y_SIZE_QUERY_IN_URL["key"];
+export type ColumnsSizeQueryInUrlKayName =
+  typeof COLUMNS_SIZE_QUERY_IN_URL["key"];
 
-export type YSizeQueryInUrlAllowedDefinedValues =
-  typeof Y_SIZE_QUERY_IN_URL["allowedValues"][number];
+export type ColumnsSizeQueryInUrlAllowedDefinedValues =
+  typeof COLUMNS_SIZE_QUERY_IN_URL["allowedValues"][number];
 
-export const Y_SIZE_QUERY_IN_URL_CONFIG: SizeQueryInUrlConfig<YSizeQueryInUrlAllowedDefinedValues> =
+export const COLUMNS_SIZE_QUERY_IN_URL_CONFIG: SizeQueryInUrlConfig<ColumnsSizeQueryInUrlAllowedDefinedValues> =
   {
-    "10": { queryValue: 10, uiValue: "10" },
-    "20": { queryValue: 20, uiValue: "20" },
+    "8": { queryValue: 8, uiValue: "8" },
+    "16": { queryValue: 16, uiValue: "16" },
     "30": { queryValue: 30, uiValue: "30" },
   };
 
-export const Y_SIZE_DEFAULT_VALUE: YSizeQueryInUrlAllowedDefinedValues = 20;
+export const COLUMNS_SIZE_DEFAULT_VALUE: ColumnsSizeQueryInUrlAllowedDefinedValues = 16;
 
-export const isValidYSize = (
+export const isValidColumnSize = (
   value: number | null | undefined
-): value is YSizeQueryInUrlAllowedDefinedValues => {
+): value is ColumnsSizeQueryInUrlAllowedDefinedValues => {
   return (
-    Y_SIZE_QUERY_IN_URL.allowedValues.find((element) => element === value) !==
-    undefined
+    COLUMNS_SIZE_QUERY_IN_URL.allowedValues.find(
+      (element) => element === value
+    ) !== undefined
   );
 };

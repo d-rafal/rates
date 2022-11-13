@@ -1,10 +1,26 @@
-import LayoutSizeSelection from "./LayoutSizeSelection";
+import { Button } from "@mui/material";
+import { type LayoutConfig } from "../hooks/useGetGameConfig";
+
 import styles from "./Menu.module.scss";
 
-const Menu = () => {
+interface MenuProps {
+  layoutConfig: LayoutConfig;
+}
+
+const Menu = ({ layoutConfig }: MenuProps) => {
+  let allBombs = 0;
+  let markedBombs = 0;
+
+  layoutConfig.forEach((tab) => {
+    allBombs += tab.filter((cellData) => cellData.hasBomb).length;
+    markedBombs += tab.filter(
+      (cellData) => cellData.reviled === "marked"
+    ).length;
+  });
+
   return (
     <div className={styles.container}>
-      <LayoutSizeSelection />
+      Bombs left: {allBombs - markedBombs} / {allBombs}
     </div>
   );
 };

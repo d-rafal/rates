@@ -5,7 +5,7 @@ import DatePickerField from "../../../mui/form-elements/DatePickerField";
 import ClearTimeRangeSelection from "./ClearTimeRangeSelection";
 import useUpdateTimeRangeBasedOnUrl from "../hooks/useUpdateTimeRangeBasedOnUrl";
 import { OrNull } from "../../../@types-and-const/@general";
-import { setQueryInUrl } from "../../../utilities/setQueryInUrl";
+import { setQueryInUrl } from "../../../utilities/setQueryInURL";
 import React from "react";
 import { dateToString } from "../../../utilities/date/dateToString";
 import {

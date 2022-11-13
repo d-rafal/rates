@@ -11,7 +11,7 @@ import {
   SELECTED_CURRENCY_QUERY_IN_URL_KEY_NAME,
   USD_CURRENCY,
 } from "../../../@types-and-const/@url-queries/@currency";
-import { setQueryInUrl } from "../../../utilities/setQueryInUrl";
+import { setQueryInUrl } from "../../../utilities/setQueryInURL";
 
 import React from "react";
 import useGetSelectedCurrencyFromUrl from "../hooks/useGetSelectedCurrencyFromUrl";

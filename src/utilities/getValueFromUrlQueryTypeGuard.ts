@@ -1,4 +1,4 @@
-export const getValueFromUrlQueryTypeGuard = <T extends E, K, E>(
+export const getValueFromUrlQueryTypeGuard = <T extends E, K extends T, E>(
   valueFromUrlQuery: E,
   substituteValue: K,
   validationFunction: (value: E) => value is T

@@ -1,23 +1,23 @@
 import {
-  isValidXSize,
-  isValidYSize,
-  XSizeQueryInUrlAllowedDefinedValues,
-  XSizeQueryInUrlKayName,
-  YSizeQueryInUrlAllowedDefinedValues,
-  YSizeQueryInUrlKayName,
+  isValidRowsSize,
+  isValidColumnSize,
+  RowsSizeQueryInUrlAllowedDefinedValues,
+  RowsSizeQueryInUrlKayName,
+  ColumnsSizeQueryInUrlAllowedDefinedValues,
+  ColumnsSizeQueryInUrlKayName,
 } from "../../../@types-and-const/@url-queries/@mines/@layout-sizes";
 import { getValueFromUrlQueryTypeGuard } from "../../../utilities/getValueFromUrlQueryTypeGuard";
 import tryConvertToFiniteNumberNullAsNull from "../../../utilities/tryConvertToFiniteNumberNullAsNull";
 
 interface XSizeProps {
-  keyName: XSizeQueryInUrlKayName;
-  defaultValue: XSizeQueryInUrlAllowedDefinedValues;
-  validationFn: typeof isValidXSize;
+  keyName: RowsSizeQueryInUrlKayName;
+  defaultValue: RowsSizeQueryInUrlAllowedDefinedValues;
+  validationFn: typeof isValidRowsSize;
 }
 interface YSizeProps {
-  keyName: YSizeQueryInUrlKayName;
-  defaultValue: YSizeQueryInUrlAllowedDefinedValues;
-  validationFn: typeof isValidYSize;
+  keyName: ColumnsSizeQueryInUrlKayName;
+  defaultValue: ColumnsSizeQueryInUrlAllowedDefinedValues;
+  validationFn: typeof isValidColumnSize;
 }
 
 type SizeProps = XSizeProps | YSizeProps;
@@ -25,11 +25,11 @@ type SizeProps = XSizeProps | YSizeProps;
 function getSizeFromUrl(
   searchParams: URLSearchParams,
   sizeProps: XSizeProps
-): XSizeQueryInUrlAllowedDefinedValues;
+): RowsSizeQueryInUrlAllowedDefinedValues;
 function getSizeFromUrl(
   searchParams: URLSearchParams,
   sizeProps: YSizeProps
-): YSizeQueryInUrlAllowedDefinedValues;
+): ColumnsSizeQueryInUrlAllowedDefinedValues;
 function getSizeFromUrl(searchParams: URLSearchParams, sizeProps: SizeProps) {
   const size = getValueFromUrlQueryTypeGuard(
     tryConvertToFiniteNumberNullAsNull(searchParams.get(sizeProps.keyName)),

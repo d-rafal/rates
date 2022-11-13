@@ -7,7 +7,7 @@ import {
   TIME_RANGE_QUERY_IN_URL_CONFIG,
 } from "../../../@types-and-const/@url-queries/@time-range";
 
-import { setQueryInUrl } from "../../../utilities/setQueryInUrl";
+import { setQueryInUrl } from "../../../utilities/setQueryInURL";
 
 const DefaultTimeRangePicker = () => {
   const [searchParams, setSearchParams] = useSearchParams();
