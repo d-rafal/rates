@@ -10,7 +10,11 @@ describe("Currency tests", () => {
     //act
 
     // assert
-    expect(await screen.findByText(/4.8343/)).toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", {
+        name: /actual rate usd\/pln: 4\.8343 zł\./i,
+      })
+    ).toBeInTheDocument();
   });
 
   it("should change to EUR and render actual rate", async () => {

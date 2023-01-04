@@ -6,9 +6,8 @@ import {
 } from "../../@types-and-const/@url-queries/@time-range";
 import { useCurrencyRateQuery } from "../../api/currency/currencyRatesApi";
 import useUpdateAppBarTitle from "../../components/appbar/title-provider/useUpdateAppBarTitle";
-import LoadingIndicator from "../../components/loading-indicator/LoadingIndicator";
 import { CURRENCY_ROUTE } from "../../routes/currencyRoute";
-import BestInvestmentIndicator from "./components/BestInvestment";
+import BestInvestmentIndicator from "./components/BestInvestmentIndicator";
 import CurrencyChart from "./components/CurrencyChart";
 import SelectionCriteriaSection from "./components/SelectionCriteriaSection";
 import useGetSelectedCurrencyFromUrl from "./hooks/useGetSelectedCurrencyFromUrl";

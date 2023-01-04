@@ -2,11 +2,11 @@
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
-import { nanoid, PreloadedState } from "@reduxjs/toolkit";
+import { nanoid, type PreloadedState } from "@reduxjs/toolkit";
 import "@testing-library/jest-dom";
-import { render, RenderOptions, configure } from "@testing-library/react";
+import { render, type RenderOptions, configure } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { AppStore, RootState, setupStore } from "./app/store/store";
+import { type AppStore, type RootState, setupStore } from "./app/store/store";
 import ContextsProvider from "./components/contexts-provider/ContextsProvider";
 import { server } from "./mocks/server";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
@@ -16,7 +16,7 @@ interface ExtendedRenderOptions
   extends Omit<RenderOptions, "wrapper" | "queries"> {
   preloadedState?: PreloadedState<RootState>;
   store?: AppStore;
-  initialRoutes?: string[] | null;
+  initialRoutes?: string[];
 }
 
 export const mockedStoreInitialState: PreloadedState<RootState> = {
@@ -36,7 +36,7 @@ export const renderWithProviders = (
   {
     preloadedState = mockedStoreInitialState,
     store = setupStore(preloadedState),
-    initialRoutes = null,
+    initialRoutes,
     ...renderOptions
   }: ExtendedRenderOptions = {}
 ) => {

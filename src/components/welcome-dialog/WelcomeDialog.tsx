@@ -1,25 +1,15 @@
+import CloseIcon from "@mui/icons-material/Close";
 import {
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Fab,
   IconButton,
   styled,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import AddIcon from "@mui/icons-material/Add";
-
-// const ListWithHyphen = styled.ul({
-//   listStyleType: "none",
-//   "&>li": {
-//     // textIndent: "-0.6rem",
-//     "&:before": { content: "'- '" },
-//   },
-// });
 
 const ListWithHyphen = styled("ul")({
   listStyleType: "none",
@@ -66,23 +56,23 @@ const WelcomeDialog = () => {
         </Typography>
         <ListWithHyphen style={{ listStyle: "" }}>
           <li>react</li>
-          <li>redux (Redux Toolkit)</li>
-          <li>formik</li>
+          <li>redux (RTK Query)</li>
+          <li>react-hook-form</li>
           <li>material-ui</li>
+          <li>react-router</li>
+          <li>jest/react-testing-library with Mock Service Worker (MSW)</li>
         </ListWithHyphen>
         <Typography sx={{ mt: "1rem" }}>
           It's based on Create React App environment configuration, fully
           responsive and written in Typescript.
         </Typography>
-        <Typography>
-          A RESTful communication with a server is mocked within a browser by
-          using "Mock Service Worker" library.
+        <Typography sx={{ mt: "1rem" }}>
+          This app is using NBP Web API to display average rates of USD and EUR
+          currencies
         </Typography>
         <Typography>
-          The intention behind this app is to simplified documentation of a
-          training progress, providing an interface to store subsequent training
-          sessions data. As I said, it's only a demonstration, so all data you
-          provide will be lost when you refresh a page or close a browser.
+          During tests and authentication process RESTful communication is
+          mocked width "Mock Service Worker" library.
         </Typography>
         <Typography>
           I will put an effort to progressively add new functionalities to this
@@ -95,23 +85,7 @@ const WelcomeDialog = () => {
           <li>email: user1@user.com</li>
           <li>password: 123456</li>
         </ListWithHyphen>
-        <Typography sx={{ mt: "1rem" }}>
-          Use{" "}
-          <Fab
-            color="secondary"
-            sx={{
-              minHeight: "1.7rem",
-              minWidth: "1.7rem",
-              height: "1.7rem",
-              width: "1.7rem",
-            }}
-          >
-            <AddIcon sx={{ fontSize: "1.2rem" }} />
-          </Fab>{" "}
-          button to add a new training session, or just edit sample ones.
-        </Typography>
         <Typography sx={{ mt: "1rem !important" }}>Enjoy!</Typography>
-        {/* </DialogContentText> */}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCloseWelcomeDialog}>Close</Button>

@@ -14,9 +14,8 @@ export const validationSchema = yup
       .string()
       .min(6, "Must be more then 5 characters")
       .required("Required"),
-    "remember-me": yup
-      .boolean()
-      .required("Required")
-      .oneOf([true], "The terms and conditions must be accepted."),
+    "remember-me": yup.boolean(),
+    // .required("Required")
+    // .oneOf([true], "The terms and conditions must be accepted."),
   })
   .required();

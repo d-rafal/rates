@@ -7,7 +7,7 @@ const RequireAuth = ({ children }: { readonly children: React.ReactNode }) => {
   const user = useSelectUser();
   const location = useLocation();
 
-  if (false && !user) {
+  if (!user) {
     return (
       <Navigate
         to={getAbsoluteRoute(LOGIN_ROUTE.path)}

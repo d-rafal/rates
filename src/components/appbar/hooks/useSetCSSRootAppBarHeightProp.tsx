@@ -10,14 +10,14 @@ export const useSetCSSRootAppBarHeightProp = () => {
   const refToAppBar = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const setCSSRootAppBarHeightProp = debounce(() => {
+    const setCSSRootAppBarHeightProp = () => {
       if (refToAppBar.current) {
         document.documentElement.style.setProperty(
           CSS_ROOT_APP_BAR_HEIGHT_PROP,
           refToAppBar.current.getBoundingClientRect().height + "px"
         );
       }
-    }, 300);
+    };
 
     setCSSRootAppBarHeightProp();
 

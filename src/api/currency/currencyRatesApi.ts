@@ -12,7 +12,8 @@ import { CurrencyRate } from "./models";
 
 const currencyRate_api = async (currencyCode: string) => {
   return fetchData(
-    "http://api.nbp.pl/api/exchangerates/rates/a/" + currencyCode.toLowerCase(),
+    "https://api.nbp.pl/api/exchangerates/rates/a/" +
+      currencyCode.toLowerCase(),
     "GET",
     undefined,
     undefined,
@@ -44,16 +45,14 @@ const currencyRatesApi = rtkqApi.injectEndpoints({
           baseQuery
         ) => {
           const res = await baseQuery(
-            "http://api.nbp.pl/api/exchangerates/rates/a/" +
+            "https://api.nbp.pl/api/exchangerates/rates/a/" +
               `${selectedCurrency}/${startDate}/${endDate}`.toLowerCase()
           );
-
-          console.log("res =", res);
 
           if (res.error) {
             dispatch(
               reportedMessageAdded({
-                messageForUser: "error directly form baseQuery messageForUser",
+                messageForUser: "error directly from baseQuery messageForUser",
                 type: "error",
                 autoHideDuration: 0,
               })
@@ -108,7 +107,7 @@ const currencyRatesApi = rtkqApi.injectEndpoints({
       }
     ),
     tableA: build.query<any, void>({
-      query: () => "http://api.nbp.pl/api/exchangerates/tables/a",
+      query: () => "https://api.nbp.pl/api/exchangerates/tables/a",
     }),
   }),
   overrideExisting: false,

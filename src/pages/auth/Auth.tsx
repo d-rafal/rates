@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import sideImg from "../../assets/img/login-side-v8.png";
+import sideImg from "../../assets/img/login-side-v8.jpg";
 import Copyright from "./components/Copyright";
 import styles from "./Auth.module.scss";
 import { Button, CircularProgress } from "@mui/material";
