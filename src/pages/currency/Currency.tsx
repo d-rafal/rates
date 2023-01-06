@@ -1,4 +1,5 @@
 import { Box, Skeleton, Typography } from "@mui/material";
+import useTheme from "@mui/material/styles/useTheme";
 import { useSearchParams } from "react-router-dom";
 import {
   getTimeRangeDescriptorFromUrlQuery,
@@ -13,6 +14,8 @@ import SelectionCriteriaSection from "./components/SelectionCriteriaSection";
 import useGetSelectedCurrencyFromUrl from "./hooks/useGetSelectedCurrencyFromUrl";
 
 const Currency = () => {
+  const theme = useTheme();
+
   useUpdateAppBarTitle(CURRENCY_ROUTE.text);
 
   const [searchParams] = useSearchParams();
@@ -40,26 +43,26 @@ const Currency = () => {
     }
   );
 
-  error && console.log("error: ", error);
-
-  // const { data: tableA } = useTableAQuery(undefined, {
-  //   refetchOnMountOrArgChange: true,
-  // });
-
   return (
     <Box
       sx={{
         display: "flex",
         flex: "auto",
-        // alignItems: "center",
-        // justifyContent: "center",
         flexDirection: "column",
-        // minHeight: "100%",
       }}
     >
       <SelectionCriteriaSection />
-      <Box component="section" sx={{ maxWidth: "100%", mt: "1rem" }}>
-        <Typography variant="h5" component="h1">
+      <Box component="section" sx={{ maxWidth: "100%" }}>
+        <Typography
+          variant="h5"
+          component="h1"
+          sx={{
+            mb: "1rem",
+            [theme.breakpoints.down("sm")]: {
+              textAlign: "center",
+            },
+          }}
+        >
           {`Actual rate ${selectedCurrency}/PLN: ${
             currencyRates?.rates.at(-1)?.mid ?? "-"
           } zł.`}
@@ -68,7 +71,6 @@ const Currency = () => {
       {isFetching && false ? (
         <Skeleton variant="rectangular" width="90%" height={500} />
       ) : (
-        // <LoadingIndicator />
         <>
           <CurrencyChart rates={currencyRates?.rates} isFetching={isFetching} />
           <BestInvestmentIndicator

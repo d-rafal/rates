@@ -1,16 +1,16 @@
-import { useContext } from "react";
 import {
-  Toolbar,
-  useScrollTrigger,
-  Stack,
-  Typography,
   Box,
+  Stack,
+  Toolbar,
+  Typography,
+  useScrollTrigger,
 } from "@mui/material";
-import { IsNavDrawerOpenContext } from "./nav-drawer/NavDrawerProvider";
-import { MuiAppBarStyled } from "./miu-appbar-styled/MuiAppBarStyled";
+import { useContext } from "react";
 import AppSettings from "./app-settings/AppSettings";
 import { useSetCSSRootAppBarHeightProp } from "./hooks/useSetCSSRootAppBarHeightProp";
+import { MuiAppBarStyled } from "./miu-appbar-styled/MuiAppBarStyled";
 import { NavDrawerControlButtons } from "./nav-drawer/NavDrawerControlButtons";
+import { IsNavDrawerOpenContext } from "./nav-drawer/NavDrawerProvider";
 import { AppBarTitleContext } from "./title-provider/AppBarTitleProvider";
 import { UserMenu } from "./user-menu/UserMenu";
 

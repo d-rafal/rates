@@ -18,7 +18,7 @@ const SelectionCriteriaSection = () => {
       <AppAccordion
         expanded={isAccordionExpanded}
         onChange={() => SetIsAccordionExpanded((prev) => !prev)}
-        sx={{ mb: 3 }}
+        sx={{ mb: "2rem!Important" }}
       >
         <AppAccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -34,7 +34,7 @@ const SelectionCriteriaSection = () => {
             direction={matchUpLg ? "row" : "column"}
             alignItems={matchUpLg ? "start" : "center"}
             justifyContent={matchUpLg ? "space-between" : "center"}
-            spacing={5}
+            spacing={4}
             sx={{ flexWrap: "wrap" }}
           >
             <CurrencySelection />

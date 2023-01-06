@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import { CurrencyRate } from "../../../api/currency/models";
 import styles from "./CurrencyChart.module.scss";
-import { Box, Skeleton } from "@mui/material";
+import { Box, Skeleton, useTheme } from "@mui/material";
 import cx from "classnames";
 
 interface CurrencyChartProps {
@@ -19,6 +19,8 @@ interface CurrencyChartProps {
 }
 
 const CurrencyChart = ({ rates, isFetching }: CurrencyChartProps) => {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
@@ -27,11 +29,12 @@ const CurrencyChart = ({ rates, isFetching }: CurrencyChartProps) => {
         alignItems: "center",
         minHeight: "500px",
         flex: "auto",
+        mb: "1rem",
       }}
     >
       <ResponsiveContainer
         width="96%"
-        height={500}
+        height={550}
         className={cx({ [styles.reFetching]: isFetching })}
       >
         {isFetching && !rates ? (
@@ -66,7 +69,12 @@ const CurrencyChart = ({ rates, isFetching }: CurrencyChartProps) => {
               }}
             />
             <CartesianGrid strokeDasharray="3 3" />
-            <Tooltip />
+            <Tooltip
+              labelStyle={{ color: theme.palette.text.primary }}
+              contentStyle={{
+                backgroundColor: theme.palette.background.default,
+              }}
+            />
             <Area
               type="monotone"
               dataKey="mid"

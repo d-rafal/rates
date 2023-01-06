@@ -61,8 +61,8 @@ const getTimeRangeForIOFields = (
   );
 
   if (datesMatch) {
-    const startDate = stringToDate(datesMatch?.[1]);
-    const endDate = stringToDate(datesMatch?.[2]);
+    const startDate = stringToDate(datesMatch[1]);
+    const endDate = stringToDate(datesMatch[2]);
 
     if (isDateValid(startDate) && isDateValid(endDate)) {
       return [startDate, endDate] as const;
@@ -74,14 +74,14 @@ const getTimeRangeForIOFields = (
 export const getTimeRangeDescriptorFromUrlQuery = (
   timeRangeQueryInUrl: string | null
 ): TimeRangeDescriptor => {
-  let selectedDefinedValue: TimeRangeDescriptor["selectedDefinedValue"] = null;
-
   const timeRangeForIOFields: TimeRangeDescriptor["timeRangeForIOFields"] =
     getTimeRangeForIOFields(timeRangeQueryInUrl);
 
   let timeRangeForDataFetching: readonly [Date, Date] =
     timeRangeForIOFields ??
     getDateRangeFromNowToPast(DEFAULT_TIME_RANGE_IN_DAYS);
+
+  let selectedDefinedValue: TimeRangeDescriptor["selectedDefinedValue"] = null;
 
   if (!timeRangeQueryInUrl) {
     selectedDefinedValue = DEFAULT_DEFINED_VALUE;

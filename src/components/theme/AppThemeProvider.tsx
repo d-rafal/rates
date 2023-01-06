@@ -6,10 +6,10 @@ import {
   ThemeProvider,
   useMediaQuery,
 } from "@mui/material";
-import { useState } from "react";
 import { Localization } from "@mui/material/locale";
-import createCtx from "../../utilities/createCtx";
+import { useState } from "react";
 import { AVAILABLE_LANGUAGES } from "../../app/translation";
+import createCtx from "../../utilities/createCtx";
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   spacing: (factor: number) => `${0.5 * factor}rem`,

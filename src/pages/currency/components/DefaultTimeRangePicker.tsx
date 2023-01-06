@@ -1,4 +1,6 @@
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { useSearchParams } from "react-router-dom";
 import {
   getTimeRangeDescriptorFromUrlQuery,
@@ -10,6 +12,9 @@ import {
 import { setQueryInUrl } from "../../../utilities/setQueryInURL";
 
 const DefaultTimeRangePicker = () => {
+  const theme = useTheme();
+  const matchDownSm = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const timeRangeQueryInUrl = searchParams.get(TIME_RANGE_QUERY_IN_URL.key);
@@ -35,6 +40,7 @@ const DefaultTimeRangePicker = () => {
       exclusive
       onChange={onChange}
       aria-label="text alignment"
+      size={matchDownSm ? "small" : "medium"}
     >
       <ToggleButton
         value={TIME_RANGE_QUERY_IN_URL_CONFIG.week.queryValue}

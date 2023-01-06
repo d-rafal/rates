@@ -1,4 +1,4 @@
-import { Skeleton, Typography } from "@mui/material";
+import { Box, Skeleton, Typography, useTheme } from "@mui/material";
 import { useMemo } from "react";
 import { CurrencyRate } from "../../../api/currency/models";
 
@@ -18,6 +18,8 @@ const BestInvestmentIndicator = ({
   rates,
   isFetching,
 }: BestInvestmentIndicatorProps) => {
+  const theme = useTheme();
+
   const bestInvestment = useMemo(() => {
     return rates?.reduce<BestInvestment | null>(
       (previousBestInvestment, buyRate, buyRateIndex, array) => {
@@ -53,23 +55,44 @@ const BestInvestmentIndicator = ({
     );
   }, [rates]);
 
-  const displayedText = isFetching ? (
-    <Skeleton />
-  ) : bestInvestment ? (
-    `Best investment: ${Math.floor(bestInvestment.refund * 100) / 100}zł./${
-      bestInvestment.refundInPercentage
-    }% (buy at: ${bestInvestment.buyDate}, sell at: ${bestInvestment.sellDate})`
+  if (isFetching) {
+    return <Skeleton />;
+  }
+
+  const displayedText = bestInvestment ? (
+    <>
+      <Typography
+        variant="h5"
+        sx={{ minWidth: "max-content" }}
+      >{`Best investment: ${Math.floor(bestInvestment.refund * 100) / 100}zł./${
+        bestInvestment.refundInPercentage
+      }%`}</Typography>
+      <Typography
+        variant="h5"
+        sx={{ minWidth: "max-content" }}
+      >{`(sell at: ${bestInvestment.sellDate})`}</Typography>
+      <Typography
+        variant="h5"
+        sx={{ minWidth: "max-content" }}
+      >{`(buy at: ${bestInvestment.buyDate})`}</Typography>
+    </>
   ) : (
-    "no date to calculate result"
+    <Typography>no date to calculate result</Typography>
   );
 
   return (
-    <Typography
-      variant="h4"
-      sx={{ flex: "auto", opacity: isFetching ? 0.5 : 1 }}
+    <Box
+      sx={{
+        flex: "auto",
+        [theme.breakpoints.down("lg")]: { flexDirection: "column" },
+        opacity: isFetching ? 0.5 : 1,
+        display: "flex",
+        alignItems: "center",
+        gap: "0.3rem",
+      }}
     >
       {displayedText}
-    </Typography>
+    </Box>
   );
 };
 

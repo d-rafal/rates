@@ -1,21 +1,20 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Stack, useMediaQuery, useTheme } from "@mui/material";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { isDateValid } from "../../../utilities/date/isDateValid";
-import DatePickerField from "../../../mui/form-elements/DatePickerField";
-import ClearTimeRangeSelection from "./ClearTimeRangeSelection";
-import useUpdateTimeRangeBasedOnUrl from "../hooks/useUpdateTimeRangeBasedOnUrl";
-import { OrNull } from "../../../@types-and-const/@general";
-import { setQueryInUrl } from "../../../utilities/setQueryInURL";
 import React from "react";
-import { dateToString } from "../../../utilities/date/dateToString";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useSearchParams } from "react-router-dom";
+import * as Yup from "yup";
+import { ObjectShape } from "yup/lib/object";
+import { OrNull } from "../../../@types-and-const/@general";
 import {
   getTimeRangeDescriptorFromUrlQuery,
   TIME_RANGE_QUERY_IN_URL,
 } from "../../../@types-and-const/@url-queries/@time-range";
-import { useSearchParams } from "react-router-dom";
-import { ObjectShape } from "yup/lib/object";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import DatePickerField from "../../../mui/form-elements/DatePickerField";
+import { dateToString } from "../../../utilities/date/dateToString";
+import { setQueryInUrl } from "../../../utilities/setQueryInURL";
+import useUpdateTimeRangeBasedOnUrl from "../hooks/useUpdateTimeRangeBasedOnUrl";
+import ClearTimeRangeSelection from "./ClearTimeRangeSelection";
 
 export const MIN_ALLOWED_DATE = new Date(2014, 0, 1, 0, 0, 0);
 export interface FormDataType {
@@ -28,9 +27,9 @@ type FormDataTypeForYup = {
 };
 
 const validationSchema = Yup.object<FormDataTypeForYup>({
-  "start-date": Yup.date().required("Required"),
-  "end-date": Yup.date().required("Required"),
-});
+  "start-date": Yup.date().typeError("Invalid date").required("Required"),
+  "end-date": Yup.date().typeError("Invalid date").required("Required"),
+}).required();
 
 // export const commonDateValidation = {
 //   validDate: (date: FormDataType["start-date"]) =>
@@ -49,6 +48,7 @@ const validationSchema = Yup.object<FormDataTypeForYup>({
 const CustomTimeRangeSelection = () => {
   const theme = useTheme();
   const matchDownSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
   const [searchParams, setSearchParams] = useSearchParams();
 
   const {
@@ -80,22 +80,22 @@ const CustomTimeRangeSelection = () => {
   const startDate = watch("start-date");
 
   const onSubmit: SubmitHandler<FormDataType> = async (values) => {
-    const startDate = values["start-date"] as any as Date;
-    const endDate = values["end-date"] as any as Date;
+    const startDate = values["start-date"];
+    const endDate = values["end-date"];
 
     setQueryInUrl(
       searchParams,
       setSearchParams,
       TIME_RANGE_QUERY_IN_URL.key,
-      "from-" + dateToString(startDate) + "-to-" + dateToString(endDate)
+      "from-" + dateToString(startDate!) + "-to-" + dateToString(endDate!)
     );
   };
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
       <Stack
-        spacing={matchDownSm ? 1 : 3}
-        direction={matchDownSm ? "column" : "row"}
+        spacing={matchDownSm ? 2 : 3}
+        direction={matchDownMd ? "column" : "row"}
         alignItems="center"
         justifyContent="center"
         sx={{ flexWrap: "wrap" }}

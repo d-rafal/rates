@@ -34,6 +34,7 @@ function Layout({ navbar }: Readonly<LayoutProps>) {
           overflowY: "scroll",
           flexGrow: 1,
           maxWidth: "100%",
+          borderRadius: 0,
         }}
         ref={mainScrollTarget}
       >
