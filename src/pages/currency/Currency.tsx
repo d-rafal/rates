@@ -30,8 +30,8 @@ const Currency = () => {
 
   const {
     // data: currencyRates,
-    error,
-    isLoading,
+    // error,
+    // isLoading,
     isFetching,
     currentData: currencyRates,
   } = useCurrencyRateQuery(

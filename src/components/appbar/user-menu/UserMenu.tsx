@@ -30,8 +30,8 @@ export const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const onLogout = async () => {
-    dispatch(logoutUserStarted()); // Joker
-    dispatch(userLoggedOut()); // Joker
+    dispatch(logoutUserStarted());
+    dispatch(userLoggedOut());
   };
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {

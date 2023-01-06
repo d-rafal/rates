@@ -1,5 +1,5 @@
 import { AppException } from "../utilities/appException";
-import { ApiEndpointQueries } from "./fetchSearchResult";
+import { type ApiEndpointQueries } from "./fetchSearchResult";
 
 const WRONG_QUERY_PARAMS_MESSAGE = "wrong query parameters!";
 

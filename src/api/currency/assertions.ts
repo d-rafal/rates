@@ -4,7 +4,6 @@ import {
 } from "@reduxjs/toolkit/dist/query";
 import { QueryReturnValue } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { getSchemaWithAssertion } from "../../models/validation";
-import { FetchDataReturnValue } from "../fetchData";
 import { CurrencyRate, currencyRateSchema } from "./models";
 
 const isCurrencyRate = getSchemaWithAssertion(

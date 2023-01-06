@@ -1,5 +1,5 @@
-import { ItemsPerPageQueryInURL } from "../@types-and-const/@url-queries/@items-per-page";
-import { LanguageQueryInURL } from "../@types-and-const/@url-queries/@language";
+import { type ItemsPerPageQueryInURL } from "../@types-and-const/@url-queries/@items-per-page";
+import { type LanguageQueryInURL } from "../@types-and-const/@url-queries/@language";
 import {
   BAD_RESPONSE_FROM_SERVER_MESSAGE_FOR_USER,
   SearchResult,

@@ -1,4 +1,3 @@
-import { useTheme } from "@mui/material";
 import * as React from "react";
 import { NavLink, NavLinkProps } from "react-router-dom";
 
@@ -6,8 +5,6 @@ const AppBarNavLink = React.forwardRef<
   HTMLAnchorElement,
   Omit<NavLinkProps, "style" | "className">
 >((NavLinkProps, ref) => {
-  const theme = useTheme();
-
   return (
     <NavLink
       ref={ref}

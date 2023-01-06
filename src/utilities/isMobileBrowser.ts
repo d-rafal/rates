@@ -1,4 +1,4 @@
-// Joker !!!! jest jeszcze coś takiego jak ua-parser-js
+// jest jeszcze coś takiego jak ua-parser-js
 
 const isMobileBrowser = (
   callbackOnTrue?: () => void,
