@@ -1,11 +1,11 @@
 import { TextField } from "@mui/material";
+import { SxProps, Theme } from "@mui/material/styles";
 import { DatePicker } from "@mui/x-date-pickers";
-import React from "react";
 
 import {
+  Control,
   Controller,
   FieldValues,
-  Control,
   Path,
   UseControllerProps,
 } from "react-hook-form";
@@ -16,6 +16,9 @@ interface DatePickerFieldProps<T extends FieldValues> {
   minAllowedDate: Date;
   shouldReserveSpaceForErrorMessage?: boolean;
   validationRules?: UseControllerProps<T, Path<T>>["rules"];
+  sx?: SxProps<Theme>;
+  afterOnChangeEvent?(): void;
+  // afterOnChangeEvent?: () => void;
 }
 
 const DatePickerField = <T extends FieldValues>({
@@ -24,6 +27,8 @@ const DatePickerField = <T extends FieldValues>({
   minAllowedDate,
   shouldReserveSpaceForErrorMessage = true,
   validationRules,
+  sx = [],
+  afterOnChangeEvent,
 }: DatePickerFieldProps<T>) => {
   return (
     <Controller
@@ -38,7 +43,10 @@ const DatePickerField = <T extends FieldValues>({
           views={["year", "month", "day"]}
           minDate={minAllowedDate}
           value={field.value}
-          onChange={field.onChange}
+          onChange={(e) => {
+            field.onChange(e);
+            afterOnChangeEvent && afterOnChangeEvent();
+          }}
           inputRef={field.ref}
           renderInput={(params) => (
             <TextField
@@ -54,6 +62,7 @@ const DatePickerField = <T extends FieldValues>({
                   : ""
               }
               onBlur={field.onBlur}
+              sx={[...(Array.isArray(sx) ? sx : [sx])]}
             />
           )}
         />

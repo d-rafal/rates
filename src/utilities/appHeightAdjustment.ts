@@ -39,3 +39,7 @@ window.addEventListener("resize", (e) => {
     fun(e);
   });
 });
+
+Promise.resolve(1).then((resolvedValue) => {
+  console.log("resolvedValue =", resolvedValue);
+});

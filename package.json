@@ -50,7 +50,17 @@
       "react-app",
       "react-app/jest",
       "plugin:react-hooks/recommended"
-    ]
+    ],
+    "rules": {
+      "no-restricted-imports": [
+        "error",
+        {
+          "patterns": [
+            "@mui/*/*/*"
+          ]
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [

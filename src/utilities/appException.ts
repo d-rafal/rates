@@ -9,6 +9,10 @@ export class AppException extends Error {
   ) {
     super(message);
 
+    // Set the prototype explicitly.
+    // only when you inherit from built-in types like Array, Error, Map, etc. and your compilation target is explicitly set to less then ES6/ES2015
+    Object.setPrototypeOf(this, AppException.prototype);
+
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, AppException);
     }

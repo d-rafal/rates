@@ -5,6 +5,12 @@ import { render, screen } from "../../../setupTests";
 import Auth from "../Auth";
 
 describe("Auth tests", () => {
+  it("description", () => {
+    // arrange
+    // act
+    // assert
+  });
+
   it("should login user", async () => {
     // arrange
     const user = userEvent.setup();

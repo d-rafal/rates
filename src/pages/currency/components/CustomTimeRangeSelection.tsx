@@ -12,6 +12,8 @@ import {
 } from "../../../@types-and-const/@url-queries/@time-range";
 import DatePickerField from "../../../mui/form-elements/DatePickerField";
 import { dateToString } from "../../../utilities/date/dateToString";
+import { isDateValid } from "../../../utilities/date/isDateValid";
+import { isFutureDate } from "../../../utilities/date/isFuturaDate";
 import { setQueryInUrl } from "../../../utilities/setQueryInURL";
 import useUpdateTimeRangeBasedOnUrl from "../hooks/useUpdateTimeRangeBasedOnUrl";
 import ClearTimeRangeSelection from "./ClearTimeRangeSelection";
@@ -26,9 +28,51 @@ type FormDataTypeForYup = {
   [Property in keyof FormDataType]+?: ObjectShape[string];
 };
 
+const dateBaseSchema = Yup.date()
+  .typeError("Invalid date")
+  .required("Required")
+  .min(MIN_ALLOWED_DATE, `min: ${MIN_ALLOWED_DATE.toLocaleDateString("pl-PL")}`)
+  .test({
+    name: "future date",
+    message: (_params) => "future date not allowed",
+    test(value) {
+      return Boolean(isDateValid(value) && isFutureDate(value));
+    },
+  });
+
 const validationSchema = Yup.object<FormDataTypeForYup>({
-  "start-date": Yup.date().typeError("Invalid date").required("Required"),
-  "end-date": Yup.date().typeError("Invalid date").required("Required"),
+  "start-date": Yup.date().concat(dateBaseSchema),
+  // .test({
+  //   name: "future date",
+  //   message: (params) => `${params.path} is not James`,
+  //   test(value) {
+  //     return Boolean(value && value > new Date(2022, 10));
+  //   },
+  // }),
+  //   test(value, ctx) {
+  //     // return Boolean(value && value > new Date(2022, 10));
+  //     if (value && value < new Date(2022, 10)) {
+  //       return ctx.createError({
+  //         message: (params) => `${params.path} is not James`,
+  //       });
+  //     }
+
+  //     return true;
+  //   },
+  // }),
+
+  // .when("end-date", {
+  //   is: (endDate: any) => isDateValid(endDate),
+  //   then: (schema) => schema.min(5),
+  //   otherwise: (schema) => schema.min(0),
+  // }),
+  "end-date": Yup.date()
+    .concat(dateBaseSchema)
+    .when("start-date", (startDate, schema) => {
+      return isDateValid(startDate)
+        ? schema.min(startDate, "End date before start date")
+        : schema;
+    }),
 }).required();
 
 // export const commonDateValidation = {
@@ -59,6 +103,7 @@ const CustomTimeRangeSelection = () => {
     control,
     watch,
     formState: { errors },
+    trigger,
   } = useForm<FormDataType>({
     defaultValues: {
       "start-date": null,
@@ -96,9 +141,12 @@ const CustomTimeRangeSelection = () => {
       <Stack
         spacing={matchDownSm ? 2 : 3}
         direction={matchDownMd ? "column" : "row"}
-        alignItems="center"
+        alignItems="start"
         justifyContent="center"
-        sx={{ flexWrap: "wrap" }}
+        sx={{
+          flexWrap: "wrap",
+          [theme.breakpoints.up("xl")]: { paddingTop: "1.4rem" },
+        }}
       >
         <DatePickerField
           fieldName="start-date"
@@ -109,7 +157,9 @@ const CustomTimeRangeSelection = () => {
           //   },
           // }}
           minAllowedDate={MIN_ALLOWED_DATE}
-          shouldReserveSpaceForErrorMessage={false}
+          shouldReserveSpaceForErrorMessage={matchDownMd ? false : true}
+          // sx={{ mt: "1rem" }}
+          afterOnChangeEvent={() => trigger("end-date")}
         />
         <DatePickerField
           fieldName="end-date"
@@ -128,7 +178,7 @@ const CustomTimeRangeSelection = () => {
           //   },
           // }}
           minAllowedDate={startDate ? startDate : MIN_ALLOWED_DATE}
-          shouldReserveSpaceForErrorMessage={false}
+          shouldReserveSpaceForErrorMessage={matchDownMd ? false : true}
         />
         <Box>
           <Button

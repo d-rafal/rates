@@ -35,7 +35,7 @@ const findStartEndIndex = (
 
 export const currencyHandler = [
   rest.get(
-    "http://api.nbp.pl/api/exchangerates/rates/a/:currency/:startDate/:endDate",
+    "https://api.nbp.pl/api/exchangerates/rates/a/:currency/:startDate/:endDate",
     function (req, res, ctx) {
       const resBadRequest = res(
         ctx.delay(ARTIFICIAL_DELAY_MS),

@@ -1,4 +1,4 @@
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { UseFormReset } from "react-hook-form";
 
@@ -20,20 +20,23 @@ const ClearTimeRangeSelection = ({
   reset,
 }: ClearTimeRangeSelectionProps) => {
   return (
-    <IconButton
-      type="button"
-      aria-label="clear filter"
-      onClick={() => {
-        reset();
-        removeQueryFromUrl(
-          searchParams,
-          setSearchParams,
-          TIME_RANGE_QUERY_IN_URL.key
-        );
-      }}
-    >
-      <HighlightOffIcon sx={{ fontSize: "3rem" }} />
-    </IconButton>
+    <Tooltip title="Clear time range selection">
+      <IconButton
+        type="button"
+        aria-label="clear filter"
+        onClick={() => {
+          reset();
+          removeQueryFromUrl(
+            searchParams,
+            setSearchParams,
+            TIME_RANGE_QUERY_IN_URL.key
+          );
+        }}
+        sx={{ padding: 0, ml: "0.5rem" }}
+      >
+        <HighlightOffIcon sx={{ fontSize: "2.5rem" }} />
+      </IconButton>
+    </Tooltip>
   );
 };
 

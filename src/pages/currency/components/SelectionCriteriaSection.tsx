@@ -28,7 +28,7 @@ const SelectionCriteriaSection = () => {
           <Typography>Select Criteria</Typography>
         </AppAccordionSummary>
         <AppAccordionDetails
-          sx={{ mb: { xs: "1.3rem", lg: "0.5rem" }, pt: "1.5rem" }}
+          sx={{ pb: { xs: "2.5rem", lg: "1.5rem" }, pt: "1.3rem" }}
         >
           <Stack
             direction={matchUpLg ? "row" : "column"}
