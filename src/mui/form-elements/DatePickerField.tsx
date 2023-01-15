@@ -14,6 +14,7 @@ interface DatePickerFieldProps<T extends FieldValues> {
   control: Control<T>;
   fieldName: Path<T>;
   minAllowedDate: Date;
+  label: string;
   shouldReserveSpaceForErrorMessage?: boolean;
   validationRules?: UseControllerProps<T, Path<T>>["rules"];
   sx?: SxProps<Theme>;
@@ -27,6 +28,7 @@ const DatePickerField = <T extends FieldValues>({
   minAllowedDate,
   shouldReserveSpaceForErrorMessage = true,
   validationRules,
+  label,
   sx = [],
   afterOnChangeEvent,
 }: DatePickerFieldProps<T>) => {
@@ -37,6 +39,7 @@ const DatePickerField = <T extends FieldValues>({
       rules={validationRules}
       render={({ field, fieldState }) => (
         <DatePicker
+          label={label}
           mask={"__.__.____"}
           disableFuture
           openTo="month"

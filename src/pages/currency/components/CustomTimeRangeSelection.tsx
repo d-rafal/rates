@@ -145,7 +145,7 @@ const CustomTimeRangeSelection = () => {
         justifyContent="center"
         sx={{
           flexWrap: "wrap",
-          [theme.breakpoints.up("xl")]: { paddingTop: "1.4rem" },
+          [theme.breakpoints.up("xl")]: { paddingTop: "0.3rem" },
         }}
       >
         <DatePickerField
@@ -160,6 +160,7 @@ const CustomTimeRangeSelection = () => {
           shouldReserveSpaceForErrorMessage={matchDownMd ? false : true}
           // sx={{ mt: "1rem" }}
           afterOnChangeEvent={() => trigger("end-date")}
+          label="start date"
         />
         <DatePickerField
           fieldName="end-date"
@@ -179,8 +180,9 @@ const CustomTimeRangeSelection = () => {
           // }}
           minAllowedDate={startDate ? startDate : MIN_ALLOWED_DATE}
           shouldReserveSpaceForErrorMessage={matchDownMd ? false : true}
+          label="end date"
         />
-        <Box>
+        <Box sx={{ alignSelf: "center" }}>
           <Button
             type="submit"
             size="large"

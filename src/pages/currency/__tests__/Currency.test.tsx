@@ -23,6 +23,7 @@ describe("Currency tests", () => {
 
     render(<Currency />);
 
+    //act
     // const selectCurrency = screen.getByLabelText(/^select currency$/i);
     const selectCurrency = screen.getByRole("button", {
       name: /select currency usd/i,
@@ -34,8 +35,6 @@ describe("Currency tests", () => {
       name: /eur/i,
     });
     await user.pointer({ keys: "[MouseLeft]", target: selectEurCurrency });
-
-    //act
 
     // assert
     expect(
