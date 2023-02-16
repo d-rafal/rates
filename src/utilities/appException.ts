@@ -1,6 +1,7 @@
 import { ReportedMessage } from "../@types-and-const/@general";
+import { CloneInstance } from "./cloneInstance";
 
-export class AppException extends Error {
+export class AppException extends Error implements CloneInstance<AppException> {
   constructor(
     message: string,
     private _messageForUser: ReportedMessage["messageForUser"] = "Error occurred!",
@@ -26,5 +27,14 @@ export class AppException extends Error {
   }
   getAutoHideDuration() {
     return this._autoHideDuration;
+  }
+
+  clone() {
+    return new AppException(
+      this.message,
+      this._messageForUser,
+      this._type,
+      this._autoHideDuration
+    );
   }
 }

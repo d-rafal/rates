@@ -10,6 +10,7 @@ import { MY_ACCOUNT_ROUTE } from "./myAccountRoute";
 import { PROFILE_ROUTE } from "./profileRoute";
 import { SETTINGS_ROUTE } from "./settingsRoute";
 
+//FIXME: lazy loading can lead to different version error, think about using service worker but using service workers is also problematic so i think is better not to use lazy loading at all
 const Currency = lazy(() => import("../pages/currency/Currency"));
 const NoMatch = lazy(() => import("../pages/no-match/NoMatch"));
 const Profile = lazy(() => import("../pages/profile/Profile"));
@@ -33,8 +34,6 @@ export const AppRoutes = () => {
         <Route path={PROFILE_ROUTE.path} element={<Profile />} />
         <Route path={MY_ACCOUNT_ROUTE.path} element={<MyAccount />} />
         <Route path={SETTINGS_ROUTE.path} element={<Settings />} />
-
-        <Route path="*" element={<NoMatch />} />
       </Route>
       <Route path={LOGIN_ROUTE.path} element={<Auth />} />
       <Route path="*" element={<NoMatch />} />

@@ -1,14 +1,16 @@
 import userEvent from "@testing-library/user-event";
 import { sampleUserCredentials } from "../../../mocks/authHandler";
 import { AppRoutes } from "../../../routes/AppRoutes";
-import { render, screen } from "../../../setupTests";
+import { configure, render, screen } from "../../../setupTests";
 import Auth from "../Auth";
 
 describe("Auth tests", () => {
-  it("description", () => {
-    // arrange
-    // act
-    // assert
+  beforeAll(() => {
+    configure({ asyncUtilTimeout: 2000 });
+  });
+
+  afterAll(() => {
+    configure({ asyncUtilTimeout: 1000 });
   });
 
   it("should login user", async () => {
